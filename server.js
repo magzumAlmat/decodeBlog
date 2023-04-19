@@ -11,34 +11,12 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+
+
+
 app.set("view engine","ejs")
 
-app.get('/',(req,res) =>{
-    res.render("index")
-})
-
-app.get('/addBlog',(req,res) =>{
-    res.render("addBlog")
-})
-
-
-app.get('/post',(req,res) =>{
-    res.render("post")
-})
-
-
-app.get('/profile',(req,res) =>{
-    res.render("profile")
-})
-
-app.get('/register',(req,res) =>{
-    res.render("signUp")
-})
-
-app.get('/signIn',(req,res) =>{
-    res.render("signIn")
-})
-
+app.use(require('./pages/router'))
 
 
 app.use(require('./auth/router'))
