@@ -51,27 +51,31 @@
                 <div style="width: 100%;  margin: 0px 1%; display: flex; justify-content: center;">
                     <div>
                         <h3 style="text-align: center;">Регистрация</h3>
+                        <!-- ---------------------------------------------------------- -->
+                        <form action="/api/signup/"  method='post' class="form">
                         <div>
-                            <input type="text"  placeholder="Введите email" style="   background-color: #FFFFFF; height: 20px;
-                        width: 100%;"/>
+                            <input type="email"  placeholder="Введите email" style="   background-color: #FFFFFF; height: 20px;
+                        width: 100%;" name="email" />
                         </div>
                         <br>
                           <div><input type="text"  placeholder="Введите полное имя" style="   background-color: #FFFFFF; height: 20px;
-                          width: 100%;"/>
+                          width: 100%;" name="full_name"/>
                           </div>
                           <br>
-                          <div><input type="text"  placeholder="Введите пароль" style="   background-color: #FFFFFF; height: 20px;
-                            width: 100%;"/>
+                          <div><input type="password"  placeholder="Введите пароль" style="   background-color: #FFFFFF; height: 20px;
+                            width: 100%;" name="password"/>
                             </div>
                             <br>
-                            <div><input type="text"  placeholder="Подтвердите пароль" style="   background-color: #FFFFFF; height: 20px;
-                                width: 100%;"/>
+                            <div><input type="password"  placeholder="Подтвердите пароль" style="   background-color: #FFFFFF; height: 20px;
+                                width: 100%;" name="re_password"/>
                                 </div>
                                 <br>
                                
                                     <br>
-                          <button class="" style="width: 105%;background-color: #00A2DC; color: white;">Зарегистрироваться</button>
-                    </div>
+                          <button  type="submit" class="" style="width: 105%;background-color: #00A2DC; color: white;">Зарегистрироваться</button>
+                    </form>
+
+                        </div>
                     
                 </div>
 

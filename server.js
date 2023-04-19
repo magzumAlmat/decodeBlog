@@ -1,8 +1,15 @@
-const { request } = require('express');
+
 const express=require('express')
 const app=express();
 
+require('./config/db')
+
 app.use(express.static(__dirname+'/public'))
+
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 
 app.set("view engine","ejs")
 
@@ -25,16 +32,17 @@ app.get('/profile',(req,res) =>{
 })
 
 app.get('/register',(req,res) =>{
-    res.render("register")
+    res.render("signUp")
 })
 
 app.get('/signIn',(req,res) =>{
     res.render("signIn")
 })
 
-app.get('/signUp',(req,res) =>{
-    res.render("signUp")
-})
+
+
+app.use(require('./auth/router'))
+
 const PORT=8000
 
 
