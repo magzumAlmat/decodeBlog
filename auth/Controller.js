@@ -14,13 +14,8 @@ const signUp = async(req, res) => {
     res.redirect('/register?error=2')
   } else {
     const findUser = await User.findOne({ email: req.body.email })
-    // console.log('User Finded ? - ',findUser)
     if (findUser) {
       res.redirect('/register?error=3')
-
-      // console.log('findUser is = ',findUser)
-      // res.send('findUser = ',findUser )
-      
     } else {
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(req.body.password, salt, function(err, hash) {
