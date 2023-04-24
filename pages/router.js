@@ -19,7 +19,7 @@ router.get('/post',(req,res) =>{
 })
 
 
-router.get('/profile',(req,res) =>{
+router.get('/profile/:id',(req,res) =>{
     res.render("profile")
 })
 
@@ -30,9 +30,6 @@ router.get('/register',(req,res) =>{
 router.get('/signin',(req,res) =>{
     res.render("signIn")
 })
-
-
-
 
 
 
