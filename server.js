@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
+
 app.use(session({
     name:'decode-blog.session',
     secret:'keyboard cat',
@@ -37,8 +38,11 @@ app.use(passport.session())
 
 app.use(require('./pages/router'))
 app.use(require('./auth/router'))
+app.use(require('./Categories/router'))
+app.use(require('./Posts/router'))
 
-const PORT=8000
+
+const PORT=8001
 
 
 app.listen(PORT, () =>{

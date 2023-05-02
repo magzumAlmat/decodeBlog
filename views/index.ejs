@@ -30,18 +30,18 @@
                 </div>
            
            
-            <div class="group-29"></div>
+          
             <div class="group-27">
-                <p class="registracija">
-                  <button class="najtiButton">
+                <!-- <p class="registracija"> -->
+                  <a class="najtiButton" href="/register" style="text-decoration: none;justify-content: center;width: 7rem;">
                   Регистрация
-                </button>
-              </p>
+                  </a>
+              <!-- </p> -->
             </div>
             <div class="group-26">
-              <button class="najtiButton">
-                <p class="registracija " style="    align-items: center;">Вход</p>
-                </button>
+             
+                <a class="najtiButton" style="text-decoration: none;align-items: center;justify-content: center;width: 6rem;"  style="text-decoration: none;" href="/signin">Вход</a>
+             
             </div>
         </div>
       </div>
@@ -50,40 +50,34 @@
             <div class="box-main">
                 <div style="width: 80%;background: #FFFFFF;
                               margin: 0px 1%;">
+                            <%
+                            
+
+                                posts.forEach(item=>{
+                                    for (i in user) {
+                                        // console.log(i)
+                                    }
+                                    // if (item.author==allUsers._id){
+                                    //     console.log('item author=   ',item.author)
+                                    //     console.log('user._id=   ',allUsers._id)
+                                    //     console.log('allUsers=   ',allUsers.full_name)
+                                    
+                                
+                                    %>
                     <div class="card">
-                        <div class="title">
-                            <p class="blogi-po-programmirovaniju">
-                                Блоги по программированию
-                            </p>
-                            <p class="populjarnye-i-luchshie-publikacii-po-progra">
-                                Популярные и лучшие публикации по
-                                            программированию для начинающих<br/>
-                                и профессиональных программистов и
-                                            IT-специалистов.
-                            </p>
-                        </div>
+                  
                         <div class="article">
-                            <img alt="" class="image-1" src="https://static.overlay-tech.com/assets/c869dee6-4291-47ec-a385-458529084a23.png"/>
+                            <img alt="" class="image-1" src="<%=item.image%>"/>
+                            <p>
+                                <%=item.title%>
+                            </p>
                             <p class="obzor-report-manager-ot-webix">
-                                Обзор Report Manager от Webix<br/>
+                                <%=item.titleDescription%><br/>
                             </p>
                             <p class="osen-2020-goda-stala-plodotvornym-vreme">
-                                Осень 2020 года стала плодотворным временем для
-                                            специалистов Webix.
+                                
                                 <br/>
-                                <br/>
-                                Команда Webix выпустила восьмую версию
-                                            библиотеки пользовательского интерфейса Webix с
-                                            двумя новыми комплексными виджетами. Первый -
-                                            зто Scheduler, о котором мы подробно говорили
-                                            ранее. Второй виджет - это Gantt chart в
-                                            JavaScript. Подробную информацию об этом виджете
-                                            Вы можете найти в статье.
-                                <br/>
-                                <br/>
-                                Ноябрь продолжает тенденцию, и мы спешим
-                                            поделиться с Вами новым комплексным виджетом
-                                            Report Manager. Давайте рассмотрим его
+                                <%=item.posttext%>
                             </p>
 
                             <div class="box">
@@ -129,7 +123,7 @@
                                     </div>
 
                                     <div style="width:80%">
-                                        <p class="">Веб-разработка</p>
+                                        <p class=""><%=item.category%></p>
                                     </div>
 
                                 </div>
@@ -140,7 +134,7 @@
                                     </div>
 
                                     <div style="width:80%">
-                                        <p class="">Nast1289</p>
+                                        <p class=""><%=item.author%></p>
                                     </div>
 
                                 </div>
@@ -152,131 +146,22 @@
                         </div>
                     </div>
 
-                    <!--Card2 ---------------------------------------------------------------------------- -->
-                    <div class="card">
-                      <div class="title">
-                        <img alt="" class="image-1" src="images/img2.png"/>  
-                       
-                       
-                      </div>
-                      <div class="article">
-                        <p style="font-family: Roboto,sans-serif;
-                        font-size: 28px;
-                        font-weight: 400;
-                        line-height: 24px;
-                        letter-spacing: 0em;
-                        text-align: left;
-                        ">
-                        Разработчики изобрели методологию высокоскоростного программирования
-                      </p>
-                          <p class="osen-2020-goda-stala-plodotvornym-vreme">
-                              Осень 2020 года стала плодотворным временем для
-                                          специалистов Webix.
-                              <br/>
-                              <br/>
-                              Команда Webix выпустила восьмую версию
-                                          библиотеки пользовательского интерфейса Webix с
-                                          двумя новыми комплексными виджетами. Первый -
-                                          зто Scheduler, о котором мы подробно говорили
-                                          ранее. Второй виджет - это Gantt chart в
-                                          JavaScript. Подробную информацию об этом виджете
-                                          Вы можете найти в статье.
-                              <br/>
-                              <br/>
-                              Ноябрь продолжает тенденцию, и мы спешим
-                                          поделиться с Вами новым комплексным виджетом
-                                          Report Manager. Давайте рассмотрим его
-                          </p>
-
-                          <div class="box">
-                              <div class="box">
-                                  <div style="width: 20%;padding: 10px;">
-                                      <img src="images/calendar.png"/>
-                                  </div>
-
-                                  <div style="width:80%">
-                                      <p class="">26.06.2020</p>
-                                  </div>
-
-                              </div>
-
-
-                              <div class="box">
-                                  <div style="width: 20%;padding: 10px;">
-                                      <img src="images/eye.png"/>
-                                  </div>
-
-                                  <div style="width:80%">
-                                      <p class="">21</p>
-                                  </div>
-
-                              </div>
-
-
-                              <div class="box">
-                                  <div style="width: 20%;padding: 10px;">
-                                      <img alt="" class="message" src="https://static.overlay-tech.com/assets/27ff86e9-732f-4068-87e7-3a5384fa319d.svg"/>
-                                  </div>
-
-                                  <div style="width:80%">
-                                      <p class="">4</p>
-                                  </div>
-
-                              </div>
-
-
-                              <div class="box">
-                                  <div style="width: 20%;padding: 10px;">
-                                      <img alt="" class="forums" src="https://static.overlay-tech.com/assets/32823ebb-3477-4992-9bf0-0b01dbc2b3eb.svg"/>
-                                  </div>
-
-                                  <div style="width:80%">
-                                      <p class="">Веб-разработка</p>
-                                  </div>
-
-                              </div>
-
-                              <div class="box">
-                                  <div style="width: 20%;padding: 10px;">
-                                      <img src="images/user.png"/>
-                                  </div>
-
-                                  <div style="width:80%">
-                                      <p class="">Nast1289</p>
-                                  </div>
-
-                              </div>
-
-
-                          </div>
-
-
-                      </div>
-                  </div>
+                  
+                  <%
+                }) %>
                 </div>
 
                 
+              
                 <div style="width: 20%;background: #FFFFFF;margin-right: 10px;">
                   <div
                       class="cards-blank">
-                      <!-- Include here the component "CardsBlank" -->
+                      
                       <p class="kategorii">Категории</p>
-
-                      <p class="prognozy-v-it">Прогнозы в IT</p>
-                      <div class="line-2"></div>
-                      <p class="prognozy-v-it">Веб-разработка</p>
-                      <div class="line-3"></div>
-                      <p class="prognozy-v-it">
-                          Мобильная разработка
-                      </p>
-                      <div class="line-4"></div>
-                      <p class="prognozy-v-it">Фриланс</p>
-                      <div class="line-5"></div>
-                      <p class="prognozy-v-it">Алгоритмы</p>
-                      <div class="line-6"></div>
-                      <p class="prognozy-v-it">
-                          Тестирование IT систем
-                      </p>
+                      <% category.forEach(cat => {%>
+                        <a  class="prognozy-v-it" href="/<%=cat.key%>"><%=cat.name%></a>
+                         <%
+                     }) %>
                   </div>
 
                 </div>
@@ -285,7 +170,7 @@
 
 
        
-                <!-- <img alt="" class="line-1" src="https://static.overlay-tech.com/assets/217a8777-d638-4edd-9084-0293a36069e0.png"/> -->
+            
             </div>
         </body>
     </body>

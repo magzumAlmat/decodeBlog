@@ -383,22 +383,11 @@
                         class="cards-blank">
                         <!-- Include here the component "CardsBlank" -->
                         <p class="kategorii">Категории</p>
-  
-                        <p class="prognozy-v-it">Прогнозы в IT</p>
-                        <div class="line-2"></div>
-                        <p class="prognozy-v-it">Веб-разработка</p>
-                        <div class="line-3"></div>
-                        <p class="prognozy-v-it">
-                            Мобильная разработка
-                        </p>
-                        <div class="line-4"></div>
-                        <p class="prognozy-v-it">Фриланс</p>
-                        <div class="line-5"></div>
-                        <p class="prognozy-v-it">Алгоритмы</p>
-                        <div class="line-6"></div>
-                        <p class="prognozy-v-it">
-                            Тестирование IT систем
-                        </p>
+                        <p class="kategorii">Категории</p>
+                        <% category.forEach(cat => {%>
+                          <a  class="prognozy-v-it" href="/<%=cat.key%>"><%=cat.name%></a>
+                           <%
+                       }) %>
                     </div>
   
                   </div>
