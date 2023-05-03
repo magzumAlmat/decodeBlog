@@ -44,8 +44,13 @@
                 <div style="width: 80%;background: #FFFFFF;
                               margin: 0px 1%;">
                     <div class="card">
-                        <form action="/api/addpost/"  method='POST' class="form"  enctype="multipart/form-data">
+                        <form action="/api/editpost/"  method='POST' class="form"  enctype="multipart/form-data">
                     
+                        <fieldset class="fieldset">
+                    
+                            <input type="hidden" value="<%=posts._id%>" name="id">
+                        </fieldset>
+
                         <div style="width: 692px">
                             <input type="text"  placeholder="Введите заголовок блога" style="   background-color: #FFFFFF; height: 80px;
                             width: 100%;" name="title" value=" <%=posts.title%>"/>
@@ -56,12 +61,21 @@
                         <br>
                         <label for="">Выберите категорию поста</label>
                             <select name="category" id="" >
-                                <% category.forEach(cat => {%>
-                                    <option><%=cat.name%></option>
-
-                                    <%
-                                }) %>
+       
                                 
+                                <% category.forEach(cat => {
+                                    if(cat.id==posts.category) {
+                                        // console.log('selected= ',country.name)
+                            %>
+                            <option selected value="<%=cat._id%>"><%=cat.name%></option>
+                                  
+                            <%  } else { %>
+                                <option value="<%=cat._id%>"><%=cat.name%></option>
+                                
+                              
+                            <%  }
+                                }); 
+                            %>
                             
                             </select>
 
@@ -88,7 +102,7 @@
                         </div>
                         <br>
                         <div>
-                            <button class="najtiButton" type="submit">Создать</button>
+                            <button class="najtiButton" type="submit">Изменить</button>
                         </div>
                         </form>
                     </div>

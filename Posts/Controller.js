@@ -1,7 +1,11 @@
 const Post=require('./Post')
-const createPost=async(req,res) => {
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Types;    
+
+const fs=require('fs')
+const path=require('path')
+const createPost=async(req,res) => {
+
 
     // console.log('req.file = ',req.file)
     console.log('req.body ',req.body.category,typeof(req.body.category))
@@ -40,4 +44,61 @@ const { ObjectId } = mongoose.Types;
     }
     console.log('req.body.film = ',req.body)
 }
-module.exports={createPost}
+
+
+
+
+const editPost=async(req,res)=>{
+    // console.log('IM in edit film req body= ',req.body)
+    if (
+        // req.file.length > 2 &&
+        req.body.title.length>2 && 
+        req.body.category.length>2 && 
+        req.body.titleDescription.length>0 && 
+        req.body.posttext.length>0 )
+    {
+            console.log('req.file = ',req.file)
+            console.log('req.user._id= ',req.user._id)
+            console.log('req.body=== ',req.body)
+       
+
+            const posts= await Post.findById(req.body.id)
+        
+            fs.unlinkSync(path.join(__dirname+'../../public'+posts.image))
+            // console.log('PATH= ',__dirname+'../../../public'+films.image)
+         
+            posts.title=req.body.title,
+            posts.category=req.body.category,
+            posts.titleDescription=req.body.titleDescription,
+            posts.posttext=req.body.posttext,
+            posts.image=`/images/posts/${req.file.filename}`,
+            posts.author=req.user._id,
+            posts.save()
+            res.redirect(`/profile/${req.user._id}`)
+    
+           
+        }
+
+
+
+
+    else{
+        res.redirect(`/editfilm/${req.body.id}?error=1`)
+
+    }
+}
+
+
+const deletePost=async(req,res)=>{
+    console.log('DELETE FILM11111')
+    const { id } = req.body;
+
+  try {
+    await Post.findByIdAndDelete(id);   
+    res.redirect(`/profile/${req.user._id}`)
+  } catch (error) {
+    res.status(400).json({ error });
+  }
+}
+
+module.exports={createPost,editPost,deletePost}

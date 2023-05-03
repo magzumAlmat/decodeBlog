@@ -45,7 +45,22 @@ router.get('/editpost/:id',async(req,res) =>{
 })
 
 
-
+router.post('/deletepost/:id', async(req, res) => {
+    //     console.log('DELETE APP')
+    //     const id = req.params.id;
+    //     Film.findByIdAndDelete(id, (err) => {
+    //       if (err) {
+    //         console.log(err);
+    //         res.send('Error deleting book');
+    //       } else {
+    //         res.redirect('/admin/'+req.user.id)
+    //       }
+    //     });
+    //   });
+    const user = await User.findById(req.params.id)
+    const post= await Post.findById(req.params.id)
+        res.render("DeletePost",{posts:post,user:req.user ? req.user:{}})
+    })
 
 router.get('/post',(req,res) =>{
     

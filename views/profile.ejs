@@ -305,7 +305,10 @@
                                           <p style="">
                                             <a href="/editpost/<%=item._id%>">      Редактировать</a>  
                                           </p>
-                                          <p style="color: red;">Удалить</p>
+                                          <form method="POST" action="/api/deletepost/">
+                                        <input type="hidden" name="id" value="<%=item._id %>" />
+                                        <button type="submit">Delete</button>
+                                        </form>
                                         </div>
                                       </div>
                                     </div>

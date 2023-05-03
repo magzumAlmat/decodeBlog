@@ -42,7 +42,7 @@ app.use(require('./Categories/router'))
 app.use(require('./Posts/router'))
 
 
-const PORT=8001
+const PORT=8000
 
 
 app.listen(PORT, () =>{
