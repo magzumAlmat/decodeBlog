@@ -8,7 +8,7 @@ const createPost=async(req,res) => {
 
 
     // console.log('req.file = ',req.file)
-    console.log('req.body ',req.body.category,typeof(req.body.category))
+    // console.log('req.body ',req.body.category,typeof(req.body.category))
     // console.log('req.body=== ',req.body)
     // console.log('req.body=== ',req.body.titleRus)
     // console.log('req.body=== ',req.body.titleEng)
@@ -25,7 +25,7 @@ const createPost=async(req,res) => {
         req.body.titleDescription.length>0 && 
         req.body.posttext.length>0 )
     {
-        console.log(' if idet po vetke true ', req.file)
+        // console.log(' if idet po vetke true ', req.file)
         await new Post({
             title:req.body.title,
             category:req.body.category,
@@ -33,7 +33,6 @@ const createPost=async(req,res) => {
             posttext:req.body.posttext,
             image:`/images/posts/${req.file.filename}`,
             author:req.user._id,
-            
             // image:`${req.file.destination}/${req.file.filename}`,
         }).save()
 
@@ -52,14 +51,15 @@ const editPost=async(req,res)=>{
     // console.log('IM in edit film req body= ',req.body)
     if (
         // req.file.length > 2 &&
-        req.body.title.length>2 && 
-        req.body.category.length>2 && 
-        req.body.titleDescription.length>0 && 
-        req.body.posttext.length>0 )
+        req.body.title.length>2 
+        // req.body.category.length>2 && 
+        // req.body.titleDescription.length>0 && 
+        // req.body.posttext.length>0 
+        )
     {
-            console.log('req.file = ',req.file)
-            console.log('req.user._id= ',req.user._id)
-            console.log('req.body=== ',req.body)
+            // console.log('req.file = ',req.file)
+            // console.log('req.user._id= ',req.user._id)
+            // console.log('req.body=== ',req.body)
        
 
             const posts= await Post.findById(req.body.id)

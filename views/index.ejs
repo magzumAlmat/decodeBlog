@@ -16,7 +16,9 @@
           margin-left: 5%;
           margin-right: 5%;
           align-items: center;">
-                <p class="decode-blog" >Decode Blog</p>
+                <p >
+                    <a href="/" style="text-decoration: none;" class="decode-blog">Decode Blog</a>
+                </p>
                 <div class="group-29"></div>
                 <div class="group-29"></div>
                 <div class="group-28">
@@ -123,7 +125,7 @@
                                     </div>
 
                                     <div style="width:80%">
-                                        <p class=""><%=item.category%></p>
+                                        <p class=""><%=item.category.name%></p>
                                     </div>
 
                                 </div>
@@ -134,7 +136,7 @@
                                     </div>
 
                                     <div style="width:80%">
-                                        <p class=""><%=item.author%></p>
+                                        <p class=""><%=item.author.full_name%></p>
                                     </div>
 
                                 </div>

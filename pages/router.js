@@ -6,7 +6,7 @@ const Post=require('../Posts/Post')
 router.get('/',async(req,res) =>{
     const AllCategories=await categories.find()
     // console.log('cat= ',AllCategories)
-    const post= await Post.find()
+    const post= await Post.find().populate('category').populate('author')
     const user = await User.findById(req.params.id)
     const allUsers = await User.find()
     
@@ -33,7 +33,8 @@ router.get('/admin/:id', async (req,res) =>{
 router.get('/addpost',async(req,res) =>{
     const AllCategories=await categories.find()
     const user = await User.findById(req.params.id)
-    res.render("addBlog",{category:AllCategories,user:req.user?req.user:{}})
+    const post= await Post.find().populate('category').populate('author')
+    res.render("addBlog",{posts:post,category:AllCategories,user:req.user?req.user:{}})
 })
 
 
@@ -70,7 +71,7 @@ router.get('/post',(req,res) =>{
 router.get('/profile/:id',async(req,res) =>{
     const user = await User.findById(req.params.id)
     const output=''
-    const post= await Post.find()
+    const post= await Post.find().populate('category').populate('author')
     // if (post.author==req.params.id){
     //     output=post
     // }

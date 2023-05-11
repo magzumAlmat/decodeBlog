@@ -57,7 +57,8 @@
                         <label for="">Выберите категорию поста</label>
                             <select name="category" id="" >
                                 <% category.forEach(cat => {%>
-                                    <option><%=cat.name%></option>
+                                    <option value="<%=cat._id%>"><%=cat.name%></option>
+                                    
 
                                     <%
                                 }) %>
