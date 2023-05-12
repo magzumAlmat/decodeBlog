@@ -63,15 +63,20 @@ const editPost=async(req,res)=>{
        
 
             const posts= await Post.findById(req.body.id)
-        
-            fs.unlinkSync(path.join(__dirname+'../../public'+posts.image))
+            if (req.file.filename){
+                if (fs.existsSync(fs.unlinkSync(path.join(__dirname+'../../public'+posts.image)))){
+                    fs.unlinkSync(path.join(__dirname+'../../public'+posts.image))
+                }
+                posts.image=`/images/posts/${req.file.filename}`
+            }
+            
             // console.log('PATH= ',__dirname+'../../../public'+films.image)
          
             posts.title=req.body.title,
             posts.category=req.body.category,
             posts.titleDescription=req.body.titleDescription,
             posts.posttext=req.body.posttext,
-            posts.image=`/images/posts/${req.file.filename}`,
+            
             posts.author=req.user._id,
             posts.save()
             res.redirect(`/profile/${req.user._id}`)
