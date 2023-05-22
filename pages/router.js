@@ -22,7 +22,19 @@ router.get('/',async(req,res) =>{
 
     }
 
-    
+
+    if(req.query.search && req.query.search.length > 0){
+        options.$or = [
+            {
+                title: new RegExp(req.query.search, 'i')
+            },
+            {
+                titleDescription: new RegExp(req.query.search, 'i')
+            }
+        ]
+        res.locals.search = req.query.search
+    }
+
     const totalFilms= await Post.count()
 
 
