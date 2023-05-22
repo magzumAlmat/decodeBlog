@@ -20,6 +20,32 @@
                     </p>
                     <div class="group-29"></div>
                     <div class="group-29"></div>
+
+                    <p><%=user._id%></p>
+                    <%if (user._id){ 
+                        console.log('user._id=   ',user._id)%>
+                    <a href="/profile/<%=user._id%>" class="href">
+                        <div class="group-26">
+                            <img src="/images/avatar.png" alt="" width="73" height="73"></div>
+                        </a>
+                        <%}else{%>
+                        <div class="group-27">
+
+                            <a class="najtiButton" href="/register" style="text-decoration: none;justify-content: center;width: 7rem;">
+                                Регистрация
+                            </a>
+
+                        </div>
+                        <div class="group-26">
+
+                            <a class="najtiButton" style="text-decoration: none;align-items: center;justify-content: center;width: 6rem;" style="text-decoration: none;" href="/signin">Вход</a>
+
+                        </div>
+                        <%}%>
+
+                            
+                    
+
                     <div class="group-28">
                         <input placeholder="Поиск по блогам" class="poisk-po-blogam"></input>
 
@@ -34,10 +60,7 @@
                 <div class="group-29"></div>
                 <div class="group-29"></div>
 
-                <div class="group-26">
-                    <img src="/images/avatar.png" alt="" width="73" height="73">
-
-                </div>
+             
 
             </div>
         </div>

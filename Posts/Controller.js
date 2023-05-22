@@ -4,6 +4,7 @@ const { ObjectId } = mongoose.Types;
 
 const fs=require('fs')
 const path=require('path')
+
 const createPost=async(req,res) => {
 
 
@@ -45,8 +46,6 @@ const createPost=async(req,res) => {
 }
 
 
-
-
 const editPost=async(req,res)=>{
     // console.log('IM in edit film req body= ',req.body)
     if (
@@ -84,9 +83,6 @@ const editPost=async(req,res)=>{
            
         }
 
-
-
-
     else{
         res.redirect(`/editfilm/${req.body.id}?error=1`)
 
@@ -106,4 +102,9 @@ const deletePost=async(req,res)=>{
   }
 }
 
-module.exports={createPost,editPost,deletePost}
+const showMore=async(req,res)=>{
+    console.log('im in showMore Func- ',req._id)
+    res.redirect(`/more/${req.user._id}`)
+}
+
+module.exports={createPost,editPost,deletePost,showMore}

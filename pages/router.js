@@ -7,11 +7,12 @@ router.get('/',async(req,res) =>{
     const AllCategories=await categories.find()
     // console.log('cat= ',AllCategories)
     const post= await Post.find().populate('category').populate('author')
-    const user = await User.findById(req.params.id)
-    const allUsers = await User.find()
+    const user = req.user ? await User.findById(req.user._id) : {}
+    console.log('user= ', user)
+    // const allUsers = await User.find(req.user.id)
     
     // console.log('post= ',post)
-    res.render("index",{allUsers:allUsers,posts:post,category:AllCategories,user:req.user?req.user:{}})
+    res.render("index",{user,posts:post,category:AllCategories,user:req.user?req.user:{}})
     
 })
 
@@ -46,6 +47,15 @@ router.get('/editpost/:id',async(req,res) =>{
 })
 
 
+router.get('/more/:id',async(req,res) =>{
+    console.log('req.params.id= ',req.params.id)
+    const AllCategories=await categories.find()
+
+    
+    const post= await Post.findById(req.params.id)
+    res.render("more",{post:post,category:AllCategories})
+})
+
 router.post('/deletepost/:id', async(req, res) => {
     //     console.log('DELETE APP')
     //     const id = req.params.id;
@@ -69,7 +79,6 @@ router.get('/post',(req,res) =>{
 })
 
 router.get('/profile/:id',async(req,res) =>{
-    const user = await User.findById(req.params.id)
     const output=''
     const post= await Post.find().populate('category').populate('author')
     // if (post.author==req.params.id){
@@ -80,7 +89,7 @@ router.get('/profile/:id',async(req,res) =>{
     
     // console.log('output= ',output)
     
-    res.render("profile",{posts:post,user:req.user ? req.user:{},loginUser:req.user })
+    res.render("profile",{posts:post,user:req.user ? req.user:{}})
 })
 
 router.get('/register',(req,res) =>{
