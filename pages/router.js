@@ -6,7 +6,14 @@ const Post=require('../Posts/Post')
 router.get('/',async(req,res) =>{
     const AllCategories=await categories.find()
     // console.log('cat= ',AllCategories)
-    const post= await Post.find().populate('category').populate('author')
+    const Categories= await categories.findOne({key:req.query.Categories})
+    const options={}
+    if(Categories)
+    {
+        options.category=Categories._id        //category потому что название таблицы такое
+    }
+
+    const post= await Post.find(options).populate('category').populate('author')
     const user = req.user ? await User.findById(req.user._id) : {}
     console.log('user= ', user)
     // const allUsers = await User.find(req.user.id)
@@ -89,7 +96,7 @@ router.get('/profile/:id',async(req,res) =>{
     
     // console.log('output= ',output)
     
-    res.render("profile",{posts:post,user:req.user ? req.user:{}})
+    res.render("profile",{posts:post,user: req.user ? req.user:{}})
 })
 
 router.get('/register',(req,res) =>{
