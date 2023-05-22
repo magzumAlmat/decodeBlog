@@ -172,9 +172,16 @@
                 }) %>
                 <div class="pages" style="margin: 0 5%;">
                 <% 
+                    let localsString = ''
+                        if(locals.Categories){
+                            localsString = `Categories=${locals.Categories}&`
+                        }
+                        if(locals.search){
+                            localsString = `search=${locals.search}&`
+                        }
                     for(let i=0;i<pages;i++){
                 %>
-                <a href="?page=<%=i%>"><%=i+1%></a>
+                <a href="?<%=localsString%>page=<%=i%>"><%=i+1%></a>
                 <%
                     }
                 %>
@@ -190,8 +197,7 @@
                 <% category.forEach(cat => {%>
                     <a class="prognozy-v-it" href="?Categories=<%=cat.key%>"><%=cat.name%></a>
                     <br>
-                <%
-                     }) %>
+                <% }) %>
             </div>
 
         </div>

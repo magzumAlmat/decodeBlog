@@ -11,6 +11,7 @@ router.get('/',async(req,res) =>{
     if(Categories)
     {
         options.category=Categories._id        //category потому что название таблицы такое
+        res.locals.Categories = req.query.Categories
     }
 
     let page=0
@@ -18,6 +19,7 @@ router.get('/',async(req,res) =>{
 
     if(req.query.page && req.query.page>0){
         page=req.query.page  
+
     }
 
     
