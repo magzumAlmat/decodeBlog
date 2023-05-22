@@ -13,13 +13,27 @@ router.get('/',async(req,res) =>{
         options.category=Categories._id        //category потому что название таблицы такое
     }
 
-    const post= await Post.find(options).populate('category').populate('author')
+    let page=0
+    const limit=3
+
+    if(req.query.page && req.query.page>0){
+        page=req.query.page  
+    }
+
+    
+    const totalFilms= await Post.count()
+
+
+    const post= await Post.find(options).limit(limit).skip(page*limit).populate('category').populate('author')
     const user = req.user ? await User.findById(req.user._id) : {}
     console.log('user= ', user)
     // const allUsers = await User.find(req.user.id)
     
     // console.log('post= ',post)
-    res.render("index",{user,posts:post,category:AllCategories,user:req.user?req.user:{}})
+    res.render("index",{user,posts:post,
+        category:AllCategories,
+        user:req.user?req.user:{},
+        pages:Math.ceil(totalFilms/limit)})
     
 })
 

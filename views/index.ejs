@@ -166,11 +166,22 @@
                     </div>
                 </div>
 
+              
 
             <%
                 }) %>
+                <div class="pages" style="margin: 0 5%;">
+                <% 
+                    for(let i=0;i<pages;i++){
+                %>
+                <a href="?page=<%=i%>"><%=i+1%></a>
+                <%
+                    }
+                %>
+            </div>
         </div>
 
+      
 
         <div style="width: 20%;background: #FFFFFF;margin-right: 10px;">
             <div class="cards-blank">
@@ -178,6 +189,7 @@
                 <p class="kategorii">Категории</p>
                 <% category.forEach(cat => {%>
                     <a class="prognozy-v-it" href="?Categories=<%=cat.key%>"><%=cat.name%></a>
+                    <br>
                 <%
                      }) %>
             </div>
