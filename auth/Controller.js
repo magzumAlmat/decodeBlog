@@ -2,7 +2,7 @@ const User = require('./User')
 const bcrypt = require('bcrypt')
 
 const signUp = async(req, res) => {
-  console.log('req= ',req.body)
+ 
   if (
     (req.body.email.length <= 0) &&
     (req.body.full_name.length <= 0) &&

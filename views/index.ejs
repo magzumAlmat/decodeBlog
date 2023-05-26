@@ -180,6 +180,7 @@
                             localsString = `search=${locals.search}&`
                         }
                     for(let i=0;i<pages;i++){
+                        console.log('pages=    ',pages)
                 %>
                 <a href="?<%=localsString%>page=<%=i%>"><%=i+1%></a>
                 <%

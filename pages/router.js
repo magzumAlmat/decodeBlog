@@ -18,7 +18,8 @@ router.get('/',async(req,res) =>{
     const limit=3
 
     if(req.query.page && req.query.page>0){
-        page=req.query.page  
+        page=req.query.page
+       
 
     }
 
@@ -35,12 +36,22 @@ router.get('/',async(req,res) =>{
         res.locals.search = req.query.search
     }
 
-    const totalFilms= await Post.count()
 
+    // console.log('Categories=  ',Categories,'req.query.Categories== ',req.query.Categories)
 
+    optionTotalFilms={}
+
+    if (req.query.Categories){
+        optionTotalFilms.category = Categories._id;
+    }
+    // console.log("@@@", optionTotalFilms)
+    const totalFilms= await Post.count(optionTotalFilms)
+
+    // console.log('page from router= ',Math.ceil(totalFilms/limit),'totalposts= ',totalFilms,'limit= ',limit)  
+    
     const post= await Post.find(options).limit(limit).skip(page*limit).populate('category').populate('author')
     const user = req.user ? await User.findById(req.user._id) : {}
-    console.log('user= ', user)
+    // console.log('user= ', user)
     // const allUsers = await User.find(req.user.id)
     
     // console.log('post= ',post)
