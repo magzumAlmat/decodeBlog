@@ -3,6 +3,8 @@ const router= express.Router()
 const User=require('../auth/User')
 const categories=require('../Categories/Category')
 const Post=require('../Posts/Post')
+
+const Rate=require('../Rates/Rates')
 router.get('/',async(req,res) =>{
     const AllCategories=await categories.find()
     // console.log('cat= ',AllCategories)
@@ -96,10 +98,10 @@ router.get('/editpost/:id',async(req,res) =>{
 router.get('/more/:id',async(req,res) =>{
     console.log('req.params.id= ',req.params.id)
     const AllCategories=await categories.find()
-
-    
+    const rate=await Rate.find({postId:req.params.id}).populate('authorId')
+    const user = await User.findById(req.params.id)
     const post= await Post.findById(req.params.id)
-    res.render("more",{post:post,category:AllCategories})
+    res.render("more",{rate:rate,post:post,category:AllCategories,user:req.user?req.user:{}})
 })
 
 router.post('/deletepost/:id', async(req, res) => {

@@ -8,7 +8,9 @@ const {signUp,signIn,signOut}=require('./Controller')
 router.post("/api/signup/",signUp)
 router.post("/api/signin/",passport.authenticate('local',{failureRedirect:'/login?error=1'}),signIn)
 router.get( "/api/signout/", signOut)
-
+router.get('/api/auth/google',passport.authenticate('google'),(req,res)=>{
+    res.redirect('/profile/' + req.user._id)
+})
 // router.post("/api/addpost/",addpost)
 
 module.exports = router

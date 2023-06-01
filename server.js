@@ -41,7 +41,7 @@ app.use(require('./auth/router'))
 app.use(require('./Categories/router'))
 app.use(require('./Posts/router'))
 
-
+app.use(require('./Rates/router'))
 const PORT=8000
 
 

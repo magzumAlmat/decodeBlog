@@ -319,11 +319,11 @@
   display: flex;
 }
 .comments {
-  display: flex;
+  /* display: flex;
   align-items: flex-start;
   position: absolute;
   left: 311px;
-  bottom: -0.01px;
+  bottom: -0.01px; */
 }
 .message {
   width: 24px;
