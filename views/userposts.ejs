@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -53,34 +54,31 @@
             </div>
         </div>
 
-    
+        <%posts.forEach(item=>{
+            for (i in user) {
+                console.log('posts from userposts file= ',i)
+            }%>
             <div class="card">
 
                 <div class="article">
-                    <img alt="" class="image-1" src="<%=post.image%>"/>
+                    <img alt="" class="image-1" src="<%=item.image%>"/>
 
                     <div class="box">
                         <div class="box">
                             <div style="width: 95%;">
-                                <%=post.title%>
+                                <%=item.title%>
                             </div>
 
-                            <!-- <div style="width:5%">
-                                <a>
-                                    Подробнее
-                                    <img src="/images/dotted.png" alt="">
-                                    </img>
-                                </a>
-                        </div> -->
+                       
                     </div>
                 </div>
                 <p class="obzor-report-manager-ot-webix">
-                    <%=post.titleDescription%><br/>
+                    <%=item.titleDescription%><br/>
                 </p>
                 <p class="osen-2020-goda-stala-plodotvornym-vreme">
 
                     <br/>
-                    <%=post.posttext%>
+                    <%=item.posttext%>
                 </p>
 
 
@@ -126,7 +124,7 @@
                         </div>
 
                         <div style="width:80%">
-                            <p class=""><%=post.category.name%></p>
+                            <p class=""><%=item.category.name%></p>
                         </div>
                     </div>
 
@@ -136,7 +134,7 @@
                         </div>
 
                         <div style="width:80%">
-                            <p class=""><%=post.author.full_name%></p>
+                            <p class=""><%=item.author.full_name%></p>
                         </div>
                     </div>
                 </div>
@@ -144,54 +142,8 @@
             </div>
 
       
-            <div class="comments">
-                <div style="margin: 0 5%">
-                    
-                    <h3>Комментарии</h3>
-                    <% if(user && user._id){%>
-                    
-                    <form  class="add-comment-form" onSubmit="sendRate(event)">
-                        <p>Напишите комментарии</p>
-                        <textarea id="comment-text"></textarea>
-                        <input type="hidden" value="<%= user._id%>" id="comment_author">
-                        <input type="hidden" value="<%= post._id%>" id="comment_post">
-                        <button type="submit">Сохранить</button>
-                    </form>
-                    <% }else{ %>
-                        <p>
-                            <a href="/signIn">Войдите</a>
-                            или
-                            <a href="/register">Зарегистрируйтесь</a>,
-                            чтобы оставить комментарии
-                        </p>
-                    <% } %>
-
-                </div>
-             
-                <div style="margin: 0 5%">
-                
-                    <% 
-                        if(rate){   
-                            rate.forEach(rate =>{
-                            console.log('this is RATE= ',rate)
-                    %>
-                        <div class="comment">
-                            <p>Автор: 
-                                <a href=""><%=rate.authorId.full_name%></a>    
-                            </p>
-                        
-                            <% if(rate.text.length > 0){%>
-                            <p>Комментарии: <%= rate.text %></p>
-                            <% } %>
-                        </div>
-                    <%
-                            })
-                        }
-
-                    
-                    %>
-                </div>
-            </div>
+            <%
+                }) %>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <script src="/js/rateFilm.js"></script>
     </body>

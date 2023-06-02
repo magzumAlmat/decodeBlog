@@ -9,8 +9,7 @@ const PostSchema=new mongoose.Schema({
     image:String,
     author:{type:Schema.Types.ObjectId,ref: "Users"},
     posttext:String,
-
+    date:{default:Date.now,type:Date}
 })
-
 
 module.exports = mongoose.model('post',PostSchema)

@@ -107,4 +107,5 @@ const showMore=async(req,res)=>{
     res.redirect(`/more/${req.user._id}`)
 }
 
+
 module.exports={createPost,editPost,deletePost,showMore}

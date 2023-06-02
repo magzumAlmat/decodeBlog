@@ -5,11 +5,16 @@ const categories=require('../Categories/Category')
 const Post=require('../Posts/Post')
 
 const Rate=require('../Rates/Rates')
+
+
 router.get('/',async(req,res) =>{
     const AllCategories=await categories.find()
     // console.log('cat= ',AllCategories)
     const Categories= await categories.findOne({key:req.query.Categories})
     const options={}
+
+
+
     if(Categories)
     {
         options.category=Categories._id        //category потому что название таблицы такое
@@ -21,8 +26,6 @@ router.get('/',async(req,res) =>{
 
     if(req.query.page && req.query.page>0){
         page=req.query.page
-       
-
     }
 
 
@@ -41,15 +44,23 @@ router.get('/',async(req,res) =>{
 
     // console.log('Categories=  ',Categories,'req.query.Categories== ',req.query.Categories)
 
-    optionTotalFilms={}
+    // optionTotalFilms={}
+    console.log(req.query,'Я попал в условие когда мы смотрим почты конкретного юзера')
+    
+    if(req.query.userposts && req.query.userposts.length > 0){
+        console.log('Я попал в условие когда мы смотрим почты конкретного юзера')
+    }
+
 
     if (req.query.Categories){
-        optionTotalFilms.category = Categories._id;
+        options.category = Categories._id;
     }
     // console.log("@@@", optionTotalFilms)
-    const totalFilms= await Post.count(optionTotalFilms)
 
-    // console.log('page from router= ',Math.ceil(totalFilms/limit),'totalposts= ',totalFilms,'limit= ',limit)  
+    const totalFilms= await Post.count(options)
+
+
+    console.log('page from router= ',Math.ceil(totalFilms/limit),'totalposts= ',totalFilms,'limit= ',limit)  
     
     const post= await Post.find(options).limit(limit).skip(page*limit).populate('category').populate('author')
     const user = req.user ? await User.findById(req.user._id) : {}
@@ -86,7 +97,6 @@ router.get('/addpost',async(req,res) =>{
     res.render("addBlog",{posts:post,category:AllCategories,user:req.user?req.user:{}})
 })
 
-
 router.get('/editpost/:id',async(req,res) =>{
     const AllCategories=await categories.find()
     const user = await User.findById(req.params.id)
@@ -100,8 +110,18 @@ router.get('/more/:id',async(req,res) =>{
     const AllCategories=await categories.find()
     const rate=await Rate.find({postId:req.params.id}).populate('authorId')
     const user = await User.findById(req.params.id)
-    const post= await Post.findById(req.params.id)
+    const post= await Post.findById(req.params.id).populate('category').populate('author')
     res.render("more",{rate:rate,post:post,category:AllCategories,user:req.user?req.user:{}})
+})
+
+router.get('/userposts/:id',async(req,res) =>{
+    console.log('req.params.id= ',req.params.id)
+    // const AllCategories=await categories.find()
+    // const rate=await Rate.find({postId:req.params.id}).populate('authorId')
+    const user = await User.findById(req.params.id)
+    const posts= await Post.find({author:req.params.id}).populate('author')
+    console.log('iam in userposts router=   ',posts)
+    res.render("userposts",{posts:posts,user:req.user?req.user:{}})
 })
 
 router.post('/deletepost/:id', async(req, res) => {
