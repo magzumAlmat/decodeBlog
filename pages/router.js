@@ -149,6 +149,7 @@ router.get('/post',(req,res) =>{
 router.get('/profile/:id',async(req,res) =>{
     const output=''
     const post= await Post.find().populate('category').populate('author')
+    
     // if (post.author==req.params.id){
     //     output=post
     // }
