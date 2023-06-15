@@ -129,7 +129,7 @@
 }
 .flex-wrapper-three {
   padding: 25px 0 0 111px;
-  display: flex;
+  /* display: flex; */
   align-items: flex-start;
 }
 

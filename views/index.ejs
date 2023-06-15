@@ -57,6 +57,7 @@
             <div class="box-main">
                 <div style="width: 80%;background: #FFFFFF;    margin: 0px 1%;">
                     <%posts.forEach(item=>{
+                                    console.log('index item= ',item)
                                     for (i in user) {
                                         // console.log(i)
                                     }
@@ -75,11 +76,11 @@
 
                             <div class="box">
                                 <div class="box">
-                                    <div style="width: 95%;">
+                                    <div style="width: 85%;">
                                         <%=item.title%>
                                     </div>
 
-                                    <div style="width:5%">
+                                    <div style="width:15%">
                                         <a href="/more/<%=item._id%>">
                                             Подробнее</a>
                                     </p>
@@ -204,4 +205,3 @@
         </div>
     </body>
 </html>
-

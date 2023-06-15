@@ -3,12 +3,13 @@ const router= express.Router()
 const User=require('../auth/User')
 const categories=require('../Categories/Category')
 const Post=require('../Posts/Post')
-
 const Rate=require('../Rates/Rates')
 
 
 router.get('/',async(req,res) =>{
+    
     const AllCategories=await categories.find()
+    console.log('categ',AllCategories)
     // console.log('cat= ',AllCategories)
     const Categories= await categories.findOne({key:req.query.Categories})
     const options={}
