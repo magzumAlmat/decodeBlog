@@ -22,13 +22,18 @@ passport.use(new GitHubStrategy({
   },
 
   async function(accessToken, refreshToken, profile, cb) {
-    const user = await User.find({ googleId: profile.id })
-    const newUser = await new User({
-        googleId: profile.id ,
-        full_name:profile.displayName,
-        email:profile.emails[0].value
-    }).save()
-    return cb(null, newUser);
+    const user = await User.findOne({ githubId: profile.id })
+    if(!user){
+        const newUser = await new User({
+            githubId: profile.id ,
+            full_name:profile.displayName,
+            email:profile.emails[0].value
+        }).save()
+        return cb(null, newUser);
+    }else{
+        return cb(null, user);
+    }
+    
 }
 ));
 
@@ -45,7 +50,7 @@ passport.use(new localStrategy(
             bcrypt.compare(String(password),String(user.password),function(err,result){
                 if (err) {
                     return done(err)
-                 }
+                 }f
                 if (result) {
                     return done(null,user)
                 }
