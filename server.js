@@ -1,50 +1,46 @@
+const express = require('express');
+const http = require('http');
+const socketIo = require('socket.io');
+const cors = require('cors');
 
-const express=require('express')
-const session=require('express-session')
-const mongooseStore=require('connect-mongo')
-const passport=require('passport')
+const app = express();
 
-const logger = require('morgan')
-const app=express();
-
-require('./config/db')
-require('./config/passport')
-
-app.use(logger('dev'))      
-app.use(express.static(__dirname+'/public'))
-
-app.use(express.json());
-app.use(express.urlencoded({
-  extended: true
+// Настройка CORS для разрешения запросов с любого источника
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST'],
 }));
 
-app.use(session({
-    name:'decode-blog.session',
-    secret:'keyboard cat',
-    maxAge: 1000*60*60*7,
-    resave:false,
-    store:mongooseStore.create({
-      mongoUrl:'mongodb://127.0.0.1:27017'
-    })
-  
-  }))
+
+
+const server = http.createServer(app);
+const io = socketIo(server, {
+  cors: {
+    origin: '*', // Настройте на конкретный URL для безопасности
+    methods: ['GET', 'POST'],
+  },
+});
 
 
 
-app.set("view engine","ejs")
-
-app.use(passport.initialize())
-app.use(passport.session())
-
-app.use(require('./pages/router'))
-app.use(require('./auth/router'))
-app.use(require('./Categories/router'))
-app.use(require('./Posts/router'))
-
-app.use(require('./Rates/router'))
-const PORT=8000
 
 
-app.listen(PORT, () =>{
-    console.log(`This is port11 ${PORT}`);
-})
+
+
+io.on('connection', (socket) => {
+  console.log('User connected:', socket.id);
+
+  // Обработка сигналов от клиента
+  socket.on('signal', (data) => {
+    socket.broadcast.emit('signal', data);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
+  });
+});
+
+const PORT = 8000;
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
